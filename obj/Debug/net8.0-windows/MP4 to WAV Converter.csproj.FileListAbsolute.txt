@@ -1,0 +1,25 @@
+D:\Coding\MP4 to WAV Converter\bin\Debug\net8.0-windows\MP4 to WAV Converter.exe
+D:\Coding\MP4 to WAV Converter\bin\Debug\net8.0-windows\MP4 to WAV Converter.deps.json
+D:\Coding\MP4 to WAV Converter\bin\Debug\net8.0-windows\MP4 to WAV Converter.runtimeconfig.json
+D:\Coding\MP4 to WAV Converter\bin\Debug\net8.0-windows\MP4 to WAV Converter.dll
+D:\Coding\MP4 to WAV Converter\bin\Debug\net8.0-windows\MP4 to WAV Converter.pdb
+D:\Coding\MP4 to WAV Converter\bin\Debug\net8.0-windows\NAudio.dll
+D:\Coding\MP4 to WAV Converter\bin\Debug\net8.0-windows\NAudio.Asio.dll
+D:\Coding\MP4 to WAV Converter\bin\Debug\net8.0-windows\NAudio.Core.dll
+D:\Coding\MP4 to WAV Converter\bin\Debug\net8.0-windows\NAudio.Midi.dll
+D:\Coding\MP4 to WAV Converter\bin\Debug\net8.0-windows\NAudio.Wasapi.dll
+D:\Coding\MP4 to WAV Converter\bin\Debug\net8.0-windows\NAudio.WinForms.dll
+D:\Coding\MP4 to WAV Converter\bin\Debug\net8.0-windows\NAudio.WinMM.dll
+D:\Coding\MP4 to WAV Converter\obj\Debug\net8.0-windows\MP4 to WAV Converter.csproj.AssemblyReference.cache
+D:\Coding\MP4 to WAV Converter\obj\Debug\net8.0-windows\MP4_to_WAV_Converter.Form1.resources
+D:\Coding\MP4 to WAV Converter\obj\Debug\net8.0-windows\MP4 to WAV Converter.csproj.GenerateResource.cache
+D:\Coding\MP4 to WAV Converter\obj\Debug\net8.0-windows\MP4 to WAV Converter.GeneratedMSBuildEditorConfig.editorconfig
+D:\Coding\MP4 to WAV Converter\obj\Debug\net8.0-windows\MP4 to WAV Converter.AssemblyInfoInputs.cache
+D:\Coding\MP4 to WAV Converter\obj\Debug\net8.0-windows\MP4 to WAV Converter.AssemblyInfo.cs
+D:\Coding\MP4 to WAV Converter\obj\Debug\net8.0-windows\MP4 to WAV Converter.csproj.CoreCompileInputs.cache
+D:\Coding\MP4 to WAV Converter\obj\Debug\net8.0-windows\MP4 to W.291B09B5.Up2Date
+D:\Coding\MP4 to WAV Converter\obj\Debug\net8.0-windows\MP4 to WAV Converter.dll
+D:\Coding\MP4 to WAV Converter\obj\Debug\net8.0-windows\refint\MP4 to WAV Converter.dll
+D:\Coding\MP4 to WAV Converter\obj\Debug\net8.0-windows\MP4 to WAV Converter.pdb
+D:\Coding\MP4 to WAV Converter\obj\Debug\net8.0-windows\MP4 to WAV Converter.genruntimeconfig.cache
+D:\Coding\MP4 to WAV Converter\obj\Debug\net8.0-windows\ref\MP4 to WAV Converter.dll
