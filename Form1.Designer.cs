@@ -42,11 +42,11 @@
             btnSelectFile.BackgroundImageLayout = ImageLayout.None;
             btnSelectFile.FlatStyle = FlatStyle.Flat;
             btnSelectFile.Font = new Font("Playboy Visuelt", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnSelectFile.Location = new Point(22, 185);
+            btnSelectFile.Location = new Point(22, 149);
             btnSelectFile.Name = "btnSelectFile";
             btnSelectFile.Size = new Size(168, 69);
             btnSelectFile.TabIndex = 0;
-            btnSelectFile.Text = "Select MP4 File";
+            btnSelectFile.Text = "Select Target File";
             btnSelectFile.UseVisualStyleBackColor = false;
             btnSelectFile.Click += btnSelectFile_Click_1;
             // 
@@ -54,17 +54,17 @@
             // 
             targetedFile.AutoSize = true;
             targetedFile.BackColor = Color.White;
-            targetedFile.Font = new Font("Playboy Visuelt", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            targetedFile.Font = new Font("Playboy Visuelt", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             targetedFile.Location = new Point(217, 22);
             targetedFile.Name = "targetedFile";
-            targetedFile.Size = new Size(134, 19);
+            targetedFile.Size = new Size(109, 20);
             targetedFile.TabIndex = 1;
-            targetedFile.Text = "Targeted MP4 File: ";
+            targetedFile.Text = "Targeted File: ";
             // 
             // btnConvert
             // 
             btnConvert.BackColor = SystemColors.Control;
-            btnConvert.BackgroundImageLayout = ImageLayout.Zoom;
+            btnConvert.BackgroundImageLayout = ImageLayout.None;
             btnConvert.FlatStyle = FlatStyle.Flat;
             btnConvert.Font = new Font("Playboy Visuelt", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnConvert.ForeColor = SystemColors.ControlText;
@@ -72,7 +72,7 @@
             btnConvert.Name = "btnConvert";
             btnConvert.Size = new Size(168, 118);
             btnConvert.TabIndex = 3;
-            btnConvert.Text = "Convert to WAV";
+            btnConvert.Text = "Perform Conversion";
             btnConvert.UseVisualStyleBackColor = false;
             btnConvert.Click += btnConvert_Click_1;
             // 
@@ -82,13 +82,14 @@
             label1.BorderStyle = BorderStyle.FixedSingle;
             label1.Location = new Point(208, 12);
             label1.Name = "label1";
-            label1.Size = new Size(580, 124);
+            label1.Size = new Size(580, 89);
             label1.TabIndex = 4;
             // 
             // label2
             // 
             label2.BackColor = SystemColors.Control;
             label2.BorderStyle = BorderStyle.FixedSingle;
+            label2.FlatStyle = FlatStyle.Flat;
             label2.ForeColor = SystemColors.ControlText;
             label2.Location = new Point(12, 12);
             label2.Name = "label2";
@@ -99,11 +100,11 @@
             // 
             lblStatus.BackColor = SystemColors.Control;
             lblStatus.BorderStyle = BorderStyle.FixedSingle;
-            lblStatus.Font = new Font("Playboy Visuelt", 24F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblStatus.Font = new Font("Playboy Visuelt", 27.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblStatus.ForeColor = SystemColors.ControlText;
-            lblStatus.Location = new Point(208, 146);
+            lblStatus.Location = new Point(208, 117);
             lblStatus.Name = "lblStatus";
-            lblStatus.Size = new Size(580, 298);
+            lblStatus.Size = new Size(580, 327);
             lblStatus.TabIndex = 7;
             lblStatus.Text = "Status Messages";
             lblStatus.TextAlign = ContentAlignment.MiddleCenter;
@@ -114,7 +115,7 @@
             txtFilePath.Font = new Font("Playboy Visuelt", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtFilePath.Location = new Point(217, 41);
             txtFilePath.Name = "txtFilePath";
-            txtFilePath.Size = new Size(560, 85);
+            txtFilePath.Size = new Size(560, 48);
             txtFilePath.TabIndex = 8;
             txtFilePath.TextAlign = ContentAlignment.MiddleCenter;
             // 
@@ -136,7 +137,7 @@
             // 
             label3.BackColor = SystemColors.Control;
             label3.Font = new Font("Playboy Visuelt", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(57, 86);
+            label3.Location = new Point(57, 78);
             label3.Name = "label3";
             label3.Size = new Size(100, 23);
             label3.TabIndex = 10;
@@ -158,7 +159,7 @@
             // 
             convertTo.Font = new Font("Playboy Visuelt", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             convertTo.FormattingEnabled = true;
-            convertTo.Location = new Point(46, 123);
+            convertTo.Location = new Point(46, 104);
             convertTo.Name = "convertTo";
             convertTo.Size = new Size(121, 24);
             convertTo.Sorted = true;
