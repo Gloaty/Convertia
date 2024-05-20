@@ -30,6 +30,10 @@
             label2 = new Label();
             lblStatus = new Label();
             txtFilePath = new Label();
+            convertFrom = new ComboBox();
+            label3 = new Label();
+            label4 = new Label();
+            convertTo = new ComboBox();
             SuspendLayout();
             // 
             // btnSelectFile
@@ -38,7 +42,7 @@
             btnSelectFile.BackgroundImageLayout = ImageLayout.None;
             btnSelectFile.FlatStyle = FlatStyle.Flat;
             btnSelectFile.Font = new Font("Playboy Visuelt", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnSelectFile.Location = new Point(22, 36);
+            btnSelectFile.Location = new Point(22, 185);
             btnSelectFile.Name = "btnSelectFile";
             btnSelectFile.Size = new Size(168, 69);
             btnSelectFile.TabIndex = 0;
@@ -64,7 +68,7 @@
             btnConvert.FlatStyle = FlatStyle.Flat;
             btnConvert.Font = new Font("Playboy Visuelt", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnConvert.ForeColor = SystemColors.ControlText;
-            btnConvert.Location = new Point(22, 166);
+            btnConvert.Location = new Point(22, 316);
             btnConvert.Name = "btnConvert";
             btnConvert.Size = new Size(168, 118);
             btnConvert.TabIndex = 3;
@@ -114,6 +118,53 @@
             txtFilePath.TabIndex = 8;
             txtFilePath.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // convertFrom
+            // 
+            convertFrom.Font = new Font("Playboy Visuelt", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            convertFrom.FormattingEnabled = true;
+            convertFrom.Items.AddRange(new object[] { "MP4" });
+            convertFrom.Location = new Point(46, 51);
+            convertFrom.Name = "convertFrom";
+            convertFrom.RightToLeft = RightToLeft.No;
+            convertFrom.Size = new Size(121, 24);
+            convertFrom.Sorted = true;
+            convertFrom.TabIndex = 9;
+            convertFrom.Text = "Select Filetype";
+            convertFrom.SelectedIndexChanged += convertFrom_SelectedIndexChanged;
+            // 
+            // label3
+            // 
+            label3.BackColor = SystemColors.Control;
+            label3.Font = new Font("Playboy Visuelt", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.Location = new Point(57, 86);
+            label3.Name = "label3";
+            label3.Size = new Size(100, 23);
+            label3.TabIndex = 10;
+            label3.Text = "to";
+            label3.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label4
+            // 
+            label4.BackColor = SystemColors.Control;
+            label4.Font = new Font("Playboy Visuelt", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.Location = new Point(57, 25);
+            label4.Name = "label4";
+            label4.Size = new Size(100, 23);
+            label4.TabIndex = 11;
+            label4.Text = "Convert";
+            label4.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // convertTo
+            // 
+            convertTo.Font = new Font("Playboy Visuelt", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            convertTo.FormattingEnabled = true;
+            convertTo.Location = new Point(46, 123);
+            convertTo.Name = "convertTo";
+            convertTo.Size = new Size(121, 24);
+            convertTo.Sorted = true;
+            convertTo.TabIndex = 12;
+            convertTo.Text = "Select Filetype";
+            // 
             // Form1
             // 
             AllowDrop = true;
@@ -122,6 +173,10 @@
             AutoSize = true;
             BackColor = Color.MediumTurquoise;
             ClientSize = new Size(800, 456);
+            Controls.Add(convertTo);
+            Controls.Add(label4);
+            Controls.Add(label3);
+            Controls.Add(convertFrom);
             Controls.Add(txtFilePath);
             Controls.Add(lblStatus);
             Controls.Add(btnConvert);
@@ -148,5 +203,9 @@
         private Label label2;
         private Label lblStatus;
         private Label txtFilePath;
+        private ComboBox convertFrom;
+        private Label label3;
+        private Label label4;
+        private ComboBox convertTo;
     }
 }

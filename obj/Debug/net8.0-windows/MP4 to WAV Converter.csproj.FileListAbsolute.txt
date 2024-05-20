@@ -23,3 +23,4 @@ D:\Coding\MP4 to WAV Converter\obj\Debug\net8.0-windows\refint\MP4 to WAV Conver
 D:\Coding\MP4 to WAV Converter\obj\Debug\net8.0-windows\MP4 to WAV Converter.pdb
 D:\Coding\MP4 to WAV Converter\obj\Debug\net8.0-windows\MP4 to WAV Converter.genruntimeconfig.cache
 D:\Coding\MP4 to WAV Converter\obj\Debug\net8.0-windows\ref\MP4 to WAV Converter.dll
+D:\Coding\MP4 to WAV Converter\obj\Debug\net8.0-windows\MP4 to WAV Converter.sourcelink.json
