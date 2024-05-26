@@ -21,6 +21,13 @@ namespace MP4_to_WAV_Converter {
             int blue = random.Next(0, 256);
             this.BackColor = Color.FromArgb(red, green, blue);
         }
+        private void btnSelectOutputFolder_Click(object sender, EventArgs e) {
+            using (FolderBrowserDialog folderDialog = new FolderBrowserDialog()) {
+                if (folderDialog.ShowDialog() == DialogResult.OK) {
+                    txtOutputFolderPath.Text = folderDialog.SelectedPath;
+                }
+            }
+        }
         private void ExtractAudioFromMp4(string ffmpegPath, string inputFilePath, string outputFilePath) {
             var ffmpegProcess = new Process
             {
@@ -43,39 +50,80 @@ namespace MP4_to_WAV_Converter {
             }
         }
         private void btnSelectFile_Click_1(object sender, EventArgs e) {
-            OpenFileDialog openFileDialog = new OpenFileDialog
-            {
-                Filter = "MP4 files (*.mp4)|*.mp4",
-                Title = "Select a file for conversion"
-            };
-            if (openFileDialog.ShowDialog() == DialogResult.OK) {
-                txtFilePath.Text = openFileDialog.FileName;
-                lblStatus.Text = "File selected: " + openFileDialog.FileName;
+            if (folderMode.Checked == false) {
+                OpenFileDialog openFileDialog = new OpenFileDialog
+                {
+                    Filter = "MP4 files (*.mp4)|*.mp4",
+                    Title = "Select a file for conversion",
+                };
+                if (openFileDialog.ShowDialog() == DialogResult.OK) {
+                    txtFilePath.Text = openFileDialog.FileName;
+                    lblStatus.Text = "File selected: " + openFileDialog.FileName;
+                }
+            }
+            if (folderMode.Checked == true) {
+                using (FolderBrowserDialog openFileDialog = new FolderBrowserDialog()) {
+                    if (openFileDialog.ShowDialog() == DialogResult.OK) {
+                        txtFilePath.Text = openFileDialog.SelectedPath;
+                        lblStatus.Text = "File selected: " + openFileDialog.SelectedPath;
+                    }
+                }
             }
         }
         private void btnConvert_Click_1(object sender, EventArgs e) {
+            string outputFolderPath = txtOutputFolderPath.Text;
             if (convertTo.Text == "WAV" && convertFrom.Text == "MP4") {
-                string ffmpegPath = "ffmpeg.exe";
-                string inputFilePath = txtFilePath.Text;
-                string tempAudioFilePath = "temp_audio.mp3";
-                string outputFilePath = Path.ChangeExtension(inputFilePath, ".wav");
-                if (string.IsNullOrWhiteSpace(inputFilePath) || !System.IO.File.Exists(inputFilePath)) {
-                    lblStatus.Text = "Please select a valid MP4 file.";
-                    return;
+                if (!folderMode.Checked) {
+                    string ffmpegPath = "ffmpeg.exe";
+                    string inputFilePath = txtFilePath.Text;
+                    string tempAudioFilePath = "temp_audio.mp3";
+                    string outputFilePath = Path.Combine(outputFolderPath, Path.GetFileNameWithoutExtension(inputFilePath) + ".wav");
+                    if (string.IsNullOrWhiteSpace(inputFilePath) || !System.IO.File.Exists(inputFilePath)) {
+                        lblStatus.Text = "Please select a valid MP4 file.";
+                        return;
+                    }
+                    try {
+                        lblStatus.Text = "Extracting audio...";
+                        ExtractAudioFromMp4(ffmpegPath, inputFilePath, tempAudioFilePath);
+                        lblStatus.Text = "Converting to WAV...";
+                        ConvertMp3ToWav(tempAudioFilePath, outputFilePath);
+                        lblStatus.Text = "Conversion complete: " + outputFilePath;
+                    }
+                    catch (Exception ex) {
+                        lblStatus.Text = "An error occurred: " + ex.Message;
+                    }
+                    finally {
+                        if (System.IO.File.Exists(tempAudioFilePath)) {
+                            System.IO.File.Delete(tempAudioFilePath);
+                        }
+                    }
                 }
-                try {
-                    lblStatus.Text = "Extracting audio...";
-                    ExtractAudioFromMp4(ffmpegPath, inputFilePath, tempAudioFilePath);
-                    lblStatus.Text = "Converting to WAV...";
-                    ConvertMp3ToWav(tempAudioFilePath, outputFilePath);
-                    lblStatus.Text = "Conversion complete: " + outputFilePath;
-                }
-                catch (Exception ex) {
-                    lblStatus.Text = "An error occurred: " + ex.Message;
-                }
-                finally {
-                    if (System.IO.File.Exists(tempAudioFilePath)) {
-                        System.IO.File.Delete(tempAudioFilePath);
+                if (folderMode.Checked == true) {
+                    string[] targetedFiles = Directory.GetFiles(txtFilePath.Text);
+                    string ffmpegPath = "ffmpeg.exe";
+                    string tempAudioFilePath = "temp_audio.mp3";
+                    if (string.IsNullOrWhiteSpace(targetedFiles[0]) || !System.IO.File.Exists(targetedFiles[0])) {
+                        lblStatus.Text = "Please select a valid MP4 file. ";
+                        return;
+                    }
+                    for (int i = 0; i < targetedFiles.Length; i++) {
+                        try {
+                            string inputFilePath = targetedFiles[i];
+                            string outputFilePath = Path.Combine(outputFolderPath, Path.GetFileNameWithoutExtension(targetedFiles[i]) + ".wav");
+                            lblStatus.Text = "Extracting audio...";
+                            ExtractAudioFromMp4(ffmpegPath, inputFilePath, tempAudioFilePath);
+                            lblStatus.Text = "Converting to WAV...";
+                            ConvertMp3ToWav(tempAudioFilePath, outputFilePath);
+                            lblStatus.Text = "Conversion complete: " + outputFilePath;
+                        }
+                        catch (Exception ex) {
+                            lblStatus.Text = "An error occurred: " + ex.Message;
+                        }
+                        finally {
+                            if (System.IO.File.Exists(tempAudioFilePath)) {
+                                System.IO.File.Delete(tempAudioFilePath);
+                            }
+                        }
                     }
                 }
             }
@@ -99,6 +147,7 @@ namespace MP4_to_WAV_Converter {
         }
 
         private void convertFrom_SelectedIndexChanged(object sender, EventArgs e) {
+            convertTo.Items.Clear();
             string[] MP4ToWAVConversionOptions = ["WAV", "MP3"];
             if (convertFrom.Text == "MP4") {
                 convertTo.Items.AddRange(MP4ToWAVConversionOptions);
