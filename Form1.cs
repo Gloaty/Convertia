@@ -4,6 +4,7 @@ using System.IO;
 using System.Windows.Forms;
 using NAudio.Lame;
 using NAudio.Wave;
+using SkiaSharp;
 using static System.Net.WebRequestMethods;
 
 namespace MP4_to_WAV_Converter {
@@ -23,11 +24,11 @@ namespace MP4_to_WAV_Converter {
 			this.BackColor = Color.FromArgb(red, green, blue);
 		}
 		private void btnSelectOutputFolder_Click(object sender, EventArgs e) {
-            using FolderBrowserDialog folderDialog = new();
-            if (folderDialog.ShowDialog() == DialogResult.OK) {
-                txtOutputFolderPath.Text = folderDialog.SelectedPath;
-            }
-        }
+			using FolderBrowserDialog folderDialog = new();
+			if (folderDialog.ShowDialog() == DialogResult.OK) {
+				txtOutputFolderPath.Text = folderDialog.SelectedPath;
+			}
+		}
 		private void btnSelectFile_Click_1(object sender, EventArgs e) {
 			if (folderMode.Checked == false) {
 				if ((convertTo.Text == "MP3" || convertTo.Text == "WAV") && convertFrom.Text == "MP4") {
@@ -52,14 +53,25 @@ namespace MP4_to_WAV_Converter {
 						lblStatus.Text = "File selected: " + openFileDialog.FileName;
 					}
 				}
+				if ((convertTo.Text == "PNG" || convertTo.Text == "JPG") && convertFrom.Text == "WEBP") {
+					OpenFileDialog openFileDialog = new()
+					{
+						Filter = "WEBP files (*.webp)|*.webp",
+						Title = "Select a file for conversion",
+					};
+					if (openFileDialog.ShowDialog() == DialogResult.OK) {
+						txtFilePath.Text = openFileDialog.FileName;
+						lblStatus.Text = "File selected: " + openFileDialog.FileName;
+					}
+				}
 			}
 			if (folderMode.Checked == true) {
-                using FolderBrowserDialog openFileDialog = new();
-                if (openFileDialog.ShowDialog() == DialogResult.OK) {
-                    txtFilePath.Text = openFileDialog.SelectedPath;
-                    lblStatus.Text = "File selected: " + openFileDialog.SelectedPath;
-                }
-            }
+				using FolderBrowserDialog openFileDialog = new();
+				if (openFileDialog.ShowDialog() == DialogResult.OK) {
+					txtFilePath.Text = openFileDialog.SelectedPath;
+					lblStatus.Text = "File selected: " + openFileDialog.SelectedPath;
+				}
+			}
 		}
 		private void btnConvert_Click_1(object sender, EventArgs e) {
 			conversionLogic();
@@ -80,17 +92,47 @@ namespace MP4_to_WAV_Converter {
 				ffmpegProcess.WaitForExit();
 			}
 			void ConvertMp3ToWav(string inputFilePath, string outputFilePath) {
-                // MP3 to WAV conversion process
-                using var reader = new Mp3FileReader(inputFilePath);
-                using var writer = new WaveFileWriter(outputFilePath, reader.WaveFormat);
-                reader.CopyTo(writer);
-            }
+				// MP3 to WAV conversion process
+				using var reader = new Mp3FileReader(inputFilePath);
+				using var writer = new WaveFileWriter(outputFilePath, reader.WaveFormat);
+				reader.CopyTo(writer);
+			}
 			void ConvertWavtoMp3(string inputFilePath, string outputFilePath) {
-                // WAV to MP3 conversion process
-                using var reader = new WaveFileReader(inputFilePath);
-                using var writer = new LameMP3FileWriter(outputFilePath, reader.WaveFormat, LAMEPreset.STANDARD);
-                reader.CopyTo(writer);
-            }
+				// WAV to MP3 conversion process
+				using var reader = new WaveFileReader(inputFilePath);
+				using var writer = new LameMP3FileWriter(outputFilePath, reader.WaveFormat, LAMEPreset.STANDARD);
+				reader.CopyTo(writer);
+			}
+			void ConvertWebpToPng(string inputFilePath, string outputFilePath) {
+				//WEBP to PNG conversion process
+				using (var inputStream = System.IO.File.OpenRead(inputFilePath)) {
+					using (var codec = SKCodec.Create(inputStream)) {
+						var bitmap = SKBitmap.Decode(codec);
+						var image = SKImage.FromBitmap(bitmap);
+						using (var outputStream = System.IO.File.OpenWrite(outputFilePath)) {
+							image.Encode(SKEncodedImageFormat.Png, 100).SaveTo(outputStream);
+						} 
+					}
+				}
+			}
+			void ConvertWebptoJpg(string inputFilePath, string outputFilePath) {
+				//WEBP to JPG conversion process
+				using (var input = System.IO.File.OpenRead(inputFilePath)) {
+					var webpStream = new SKManagedStream(input);
+					var bitmap = SKBitmap.Decode(webpStream);
+					if (bitmap == null) {
+						lblStatus.Text = "Failed to load target image";
+						return;
+					}
+					using (var image = SKImage.FromBitmap(bitmap)) {
+                        using (var data = image.Encode(SKEncodedImageFormat.Jpeg, 100)) {
+							using (var output = System.IO.File.OpenWrite(outputFilePath)) {
+								data.SaveTo(output);
+							}
+						}
+                    }
+				}
+			}
 			string outputFolderPath = txtOutputFolderPath.Text;
 			if (!folderMode.Checked) {
 				// Individual file conversion mode
@@ -120,9 +162,9 @@ namespace MP4_to_WAV_Converter {
 					}
 				}
 				if (convertTo.Text == "MP3" && convertFrom.Text == "MP4") {
-                    // Individual file MP4 to MP3 conversion
-                    string outputFilePath = Path.Combine(outputFolderPath, Path.GetFileNameWithoutExtension(inputFilePath) + ".mp3");
-                    try {
+					// Individual file MP4 to MP3 conversion
+					string outputFilePath = Path.Combine(outputFolderPath, Path.GetFileNameWithoutExtension(inputFilePath) + ".mp3");
+					try {
 						lblStatus.Text = "Extracting audio...";
 						ExtractAudioFromMp4(ffmpegPath, inputFilePath, outputFilePath);
 						lblStatus.Text = "Conversion complete: " + outputFilePath;
@@ -132,8 +174,8 @@ namespace MP4_to_WAV_Converter {
 					}
 				}
 				if (convertTo.Text == "MP3" && convertFrom.Text == "WAV") {
-                    // Individual file WAV to MP3 conversion
-                    string outputFilePath = Path.Combine(outputFolderPath, Path.GetFileNameWithoutExtension(inputFilePath) + ".mp3");
+					// Individual file WAV to MP3 conversion
+					string outputFilePath = Path.Combine(outputFolderPath, Path.GetFileNameWithoutExtension(inputFilePath) + ".mp3");
 					try {
 						lblStatus.Text = "Extracting audio...";
 						ConvertWavtoMp3(inputFilePath, outputFilePath);
@@ -142,7 +184,33 @@ namespace MP4_to_WAV_Converter {
 					catch(Exception ex) {
 						lblStatus.Text = "An error occurred: " + ex.Message;
 					}
-                }
+				}
+				if (convertTo.Text == "PNG" && convertFrom.Text == "WEBP") {
+					// Individual file WEBP to PNG conversion
+					string outputFilePath = Path.Combine(outputFolderPath, Path.GetFileNameWithoutExtension(inputFilePath) + ".png");
+					try {
+						lblStatus.Text = "Reading Image...";
+						ConvertWebpToPng(inputFilePath, outputFilePath);
+						Thread.Sleep(500);
+						lblStatus.Text = "Conversion complete: " + outputFilePath;
+					}
+					catch (Exception ex) {
+						lblStatus.Text = "An error occurred: " + ex.Message;
+					}
+				}
+				if (convertTo.Text == "JPG" && convertFrom.Text == "WEBP") {
+					// Individual file WEBP to JPG conversion
+					string outputFilePath = Path.Combine(outputFolderPath, Path.GetFileNameWithoutExtension(inputFilePath) + ".jpg");
+					try {
+						lblStatus.Text = "Reading Image...";
+						ConvertWebptoJpg(inputFilePath, outputFilePath);
+						Thread.Sleep(500);
+						lblStatus.Text = "Conversion complete: " + outputFilePath;
+					}
+					catch(Exception ex) {
+						lblStatus.Text = "An error occurred: " + ex.Message;
+					}
+				}
 			}
 			if (folderMode.Checked) {
 				// Full folder conversion mode
@@ -197,11 +265,41 @@ namespace MP4_to_WAV_Converter {
 					for (int i = 0; i < targetedFiles.Length; i++) {
 						try {
 							string inputFilePath = targetedFiles[i];
-                            string outputFilePath = Path.Combine(outputFolderPath, Path.GetFileNameWithoutExtension(targetedFiles[i]) + ".mp3");
+							string outputFilePath = Path.Combine(outputFolderPath, Path.GetFileNameWithoutExtension(targetedFiles[i]) + ".mp3");
 							lblStatus.Text = "Extracting audio...";
 							ConvertWavtoMp3(inputFilePath, outputFilePath);
 							lblStatus.Text = "Conversion complete: " + outputFilePath;
-                        }
+						}
+						catch (Exception ex) {
+							lblStatus.Text = "An error occurred: " + ex.Message;
+						}
+					}
+				}
+				if (convertTo.Text == "PNG" && convertFrom.Text == "WEBP") {
+					// Full folder WEBP to PNG conversion mode
+					for (int i = 0; i < targetedFiles.Length; i++) {
+						try {
+							string inputFilePath = targetedFiles[i];
+							string outputFilePath = Path.Combine(outputFolderPath, Path.GetFileNameWithoutExtension(targetedFiles[i]) + ".png");
+							lblStatus.Text = "Reading images...";
+							ConvertWebpToPng(inputFilePath, outputFilePath);
+							lblStatus.Text = "Conversion complete: " + outputFilePath;
+						}
+						catch (Exception ex) {
+							lblStatus.Text = "An error occurred: " + ex.Message;
+						}
+					}
+				}
+				if (convertTo.Text == "JPG" && convertFrom.Text == "WEBP") {
+					// Full folder WEBP to PNG converison mode
+					for (int i = 0; i < targetedFiles.Length; i++) {
+						try {
+							string inputFilePath = targetedFiles[i];
+							string outputFilePath = Path.Combine(outputFolderPath, Path.GetFileNameWithoutExtension(targetedFiles[i]) + ".jpg");
+							lblStatus.Text = "Reading images...";
+							ConvertWebptoJpg(inputFilePath, outputFilePath);
+							lblStatus.Text = "Conversion complete: " + outputFilePath;
+						}
 						catch (Exception ex) {
 							lblStatus.Text = "An error occurred: " + ex.Message;
 						}
@@ -214,11 +312,15 @@ namespace MP4_to_WAV_Converter {
 			convertTo.Items.Clear();
 			string[] WAVConversionOptions = ["MP3"];
 			string[] MP4ConversionOptions = ["WAV", "MP3"];
+			string[] WEBPConversionOptions = ["PNG", "JPG"];
 			if (convertFrom.Text == "MP4") {
 				convertTo.Items.AddRange(MP4ConversionOptions);
 			}
 			if (convertFrom.Text == "WAV") {
 				convertTo.Items.AddRange(WAVConversionOptions);
+			}
+			if (convertFrom.Text == "WEBP") {
+				convertTo.Items.AddRange(WEBPConversionOptions);
 			}
 		}
 	}

@@ -27,3 +27,8 @@ D:\Coding\MP4 to WAV Converter\obj\Debug\net8.0-windows\MP4 to WAV Converter.sou
 D:\Coding\MP4 to WAV Converter\bin\Debug\net8.0-windows\libmp3lame.32.dll
 D:\Coding\MP4 to WAV Converter\bin\Debug\net8.0-windows\libmp3lame.64.dll
 D:\Coding\MP4 to WAV Converter\bin\Debug\net8.0-windows\NAudio.Lame.dll
+D:\Coding\MP4 to WAV Converter\bin\Debug\net8.0-windows\SkiaSharp.dll
+D:\Coding\MP4 to WAV Converter\bin\Debug\net8.0-windows\runtimes\osx\native\libSkiaSharp.dylib
+D:\Coding\MP4 to WAV Converter\bin\Debug\net8.0-windows\runtimes\win-arm64\native\libSkiaSharp.dll
+D:\Coding\MP4 to WAV Converter\bin\Debug\net8.0-windows\runtimes\win-x64\native\libSkiaSharp.dll
+D:\Coding\MP4 to WAV Converter\bin\Debug\net8.0-windows\runtimes\win-x86\native\libSkiaSharp.dll

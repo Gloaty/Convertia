@@ -129,7 +129,7 @@
             // 
             convertFrom.Font = new Font("Playboy Visuelt", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             convertFrom.FormattingEnabled = true;
-            convertFrom.Items.AddRange(new object[] { "MP4", "WAV" });
+            convertFrom.Items.AddRange(new object[] { "MP4", "WAV", "WEBP" });
             convertFrom.Location = new Point(64, 45);
             convertFrom.Name = "convertFrom";
             convertFrom.RightToLeft = RightToLeft.No;
