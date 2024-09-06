@@ -12,6 +12,7 @@
   <ItemGroup>
     <PackageReference Include="NAudio" Version="2.2.1" />
     <PackageReference Include="NAudio.Lame" Version="2.1.0" />
+    <PackageReference Include="PDFsharp" Version="6.1.1" />
     <PackageReference Include="SkiaSharp" Version="2.88.8" />
   </ItemGroup>
 

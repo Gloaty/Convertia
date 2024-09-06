@@ -32,3 +32,17 @@ D:\Coding\MP4 to WAV Converter\bin\Debug\net8.0-windows\runtimes\osx\native\libS
 D:\Coding\MP4 to WAV Converter\bin\Debug\net8.0-windows\runtimes\win-arm64\native\libSkiaSharp.dll
 D:\Coding\MP4 to WAV Converter\bin\Debug\net8.0-windows\runtimes\win-x64\native\libSkiaSharp.dll
 D:\Coding\MP4 to WAV Converter\bin\Debug\net8.0-windows\runtimes\win-x86\native\libSkiaSharp.dll
+D:\Coding\MP4 to WAV Converter\bin\Debug\net8.0-windows\Microsoft.Extensions.DependencyInjection.dll
+D:\Coding\MP4 to WAV Converter\bin\Debug\net8.0-windows\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\Coding\MP4 to WAV Converter\bin\Debug\net8.0-windows\Microsoft.Extensions.Logging.dll
+D:\Coding\MP4 to WAV Converter\bin\Debug\net8.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
+D:\Coding\MP4 to WAV Converter\bin\Debug\net8.0-windows\Microsoft.Extensions.Options.dll
+D:\Coding\MP4 to WAV Converter\bin\Debug\net8.0-windows\Microsoft.Extensions.Primitives.dll
+D:\Coding\MP4 to WAV Converter\bin\Debug\net8.0-windows\PdfSharp.Charting.dll
+D:\Coding\MP4 to WAV Converter\bin\Debug\net8.0-windows\PdfSharp.Quality.dll
+D:\Coding\MP4 to WAV Converter\bin\Debug\net8.0-windows\PdfSharp.Snippets.dll
+D:\Coding\MP4 to WAV Converter\bin\Debug\net8.0-windows\PdfSharp.System.dll
+D:\Coding\MP4 to WAV Converter\bin\Debug\net8.0-windows\PdfSharp.WPFonts.dll
+D:\Coding\MP4 to WAV Converter\bin\Debug\net8.0-windows\PdfSharp.dll
+D:\Coding\MP4 to WAV Converter\bin\Debug\net8.0-windows\de\PdfSharp.Charting.resources.dll
+D:\Coding\MP4 to WAV Converter\bin\Debug\net8.0-windows\de\PdfSharp.resources.dll

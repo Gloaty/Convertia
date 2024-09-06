@@ -13,8 +13,12 @@
         "packagesPath": "C:\\Users\\gloat\\.nuget\\packages\\",
         "outputPath": "D:\\Coding\\MP4 to WAV Converter\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
           "C:\\Users\\gloat\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -54,6 +58,10 @@
               "target": "Package",
               "version": "[2.1.0, )"
             },
+            "PDFsharp": {
+              "target": "Package",
+              "version": "[6.1.1, )"
+            },
             "SkiaSharp": {
               "target": "Package",
               "version": "[2.88.8, )"
@@ -78,7 +86,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

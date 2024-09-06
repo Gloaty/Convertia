@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MP4 to WAV Converter")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cc7451c762220db0cb6b7b079839008c88b4a4cd")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d9fcbd11aa0088bd643c3b903273c7643a3ed8a3")]
 [assembly: System.Reflection.AssemblyProductAttribute("MP4 to WAV Converter")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MP4 to WAV Converter")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -129,7 +129,7 @@
             // 
             convertFrom.Font = new Font("Playboy Visuelt", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             convertFrom.FormattingEnabled = true;
-            convertFrom.Items.AddRange(new object[] { "MP4", "WAV", "WEBP" });
+            convertFrom.Items.AddRange(new object[] { "MP4", "PDF", "WAV", "WEBP" });
             convertFrom.Location = new Point(64, 45);
             convertFrom.Name = "convertFrom";
             convertFrom.RightToLeft = RightToLeft.No;
@@ -232,9 +232,9 @@
             folderMode.Font = new Font("Playboy Visuelt", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             folderMode.Location = new Point(249, 215);
             folderMode.Name = "folderMode";
-            folderMode.Size = new Size(210, 28);
+            folderMode.Size = new Size(288, 28);
             folderMode.TabIndex = 18;
-            folderMode.Text = "Folder Convert Mode";
+            folderMode.Text = "Folder / Playlist Convert Mode";
             folderMode.UseVisualStyleBackColor = false;
             // 
             // Form1
@@ -268,6 +268,7 @@
             SizeGripStyle = SizeGripStyle.Hide;
             Text = "MP4 to WAV Converter";
             TransparencyKey = Color.LawnGreen;
+            Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
         }
